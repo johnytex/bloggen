@@ -14,9 +14,14 @@ try:
 except FileExistsError:
     pass
 
+metadata = []
+
+# Generate posts
 for post in os.listdir(os.path.join(BASE_DIR, 'posts')):
+    md = markdown.Markdown(extensions=['markdown.extensions.meta'])
     with open(os.path.join(BASE_DIR, 'posts', post), 'r') as f:
-        post_html = markdown.markdown(f.read())
+        post_html = md.convert(f.read())
+    metadata.append(md.Meta)
     template = env.get_template('post.html')
     html = template.render(
         post_html=Markup(post_html)
@@ -28,3 +33,10 @@ for post in os.listdir(os.path.join(BASE_DIR, 'posts')):
     )
     with open(filename, 'w') as f:
         f.write(html)
+
+# Generate index page
+index_template = env.get_template('index.html')
+html = index_template.render(posts=metadata)
+filename = os.path.join(BASE_DIR, 'site', 'index.html')
+with open(filename, 'w') as f:
+    f.write(html)
