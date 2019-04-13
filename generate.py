@@ -48,7 +48,10 @@ def generate_index_page(posts_metadata):
 def copy_static_files():
     static_src_path = os.path.join(BASE_DIR, 'static')
     static_dest_path = os.path.join(SITE_PATH, 'static')
-    shutil.rmtree(static_dest_path)
+    try:
+        shutil.rmtree(static_dest_path)
+    except FileNotFoundError:
+        pass
     shutil.copytree(static_src_path, static_dest_path)
 
 if __name__ == '__main__':
