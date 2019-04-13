@@ -46,7 +46,7 @@ def generate_index_page(posts_metadata):
         f.write(html)
 
 def copy_static_files():
-    static_src_path = os.path.join(BASE_PATH, 'static')
+    static_src_path = os.path.join(BASE_DIR, 'static')
     static_dest_path = os.path.join(SITE_PATH, 'static')
     shutil.rmtree(static_dest_path)
     shutil.copytree(static_src_path, static_dest_path)
