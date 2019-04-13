@@ -1,0 +1,31 @@
+body {
+    color: #555;
+    font-family: "PT Sans", "Georgia", sans-serif;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 50em;
+    padding: 4em 1em;
+}
+
+a {
+    color: #e81c4f;
+}
+
+h2 {
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+code,
+pre {
+    background: #eee;
+}
+
+code {
+    padding: 2px 4px;
+    vertical-align: text-bottom;
+}
+
+pre {
+    padding: 1em;
+}
