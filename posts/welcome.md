@@ -1,3 +1,6 @@
+Title: Welcome to my blog!
+Date:  2019-04-13
+
 # Welcome!
 
 Hello everyone, and welcome to my blog!
