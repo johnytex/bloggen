@@ -2,6 +2,6 @@
 {% block title %}Posts{% endblock %}
 {% block content %}
     {% for post in posts %}
-        {{ post.title }}
+        {{ post.title[0] }}
     {% endfor %}
 {% endblock %}
