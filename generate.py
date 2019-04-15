@@ -41,6 +41,7 @@ def generate_posts():
     return metadata
 
 def generate_index_page(posts_metadata):
+    posts_metadata.sort(key=lambda x: x['date'])
     index_template = env.get_template('index.html')
     html = index_template.render(posts=posts_metadata)
     filename = os.path.join(SITE_PATH, 'index.html')
