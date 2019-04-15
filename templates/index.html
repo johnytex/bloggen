@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Posts{% endblock %}
 {% block content %}
+    <ul>
     {% for post in posts %}
-        <a href="{{ post.filename }}">{{ post.title[0] }}</a>
+        <li>
+            {{ post.date[0] }} <a href="{{ post.filename }}">{{ post.title[0] }}</a>
+        </li>
     {% endfor %}
+    </ul>
 {% endblock %}
