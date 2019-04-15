@@ -2,8 +2,6 @@ Authors: chreke
 Date:    2019-04-13
 Title:   Welcome to my blog!
 
-# Welcome!
-
 Hello everyone, and welcome to my blog!
 
 Here I write about different things, such as the [Python programming
