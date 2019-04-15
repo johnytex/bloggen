@@ -5,8 +5,9 @@ Bloggen is a simple static blog generator written in Python.
 ## Usage
 
 1. Clone this repository
-1. Run `pip install -r requirements.txt` (You may want to create
-   a [virtualenv][virtualenv] first)
+1. Make sure you have Python 3.7 (or later) installed. You may also
+   want to create a [virtualenv][virtualenv] for this project.
+1. Run `pip install -r requirements.txt`
 1. Run the `generate.py` script.
 
 `generate.py` looks for Markdown files in the `posts` directory and
