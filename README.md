@@ -27,8 +27,10 @@ the contents of this directory to `site/static/`.
 
 Bloggen uses [Python-Markdown][pymark] for converting Markdown
 documents to HTML and its [Meta-Data extension][metadata] extension
-for blog post metadata. At a minimum, each blog entry needs to have
-the `Title` and `Date` fields set.
+for blog post metadata.
+
+At a minimum, each blog entry needs to have the `Authors`, `Title` and
+`Date` fields set.
 
 [pymark]: https://python-markdown.github.io
 [metadata]: https://python-markdown.github.io/extensions/meta_data/
