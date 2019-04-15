@@ -22,7 +22,7 @@ except FileExistsError:
 def generate_posts():
     metadata = []
     for post in os.listdir(os.path.join(BASE_DIR, 'posts')):
-        md = markdown.Markdown(extensions=['meta'])
+        md = markdown.Markdown(extensions=['meta', 'fenced_code', 'codehilite'])
         with open(os.path.join(BASE_DIR, 'posts', post), 'r') as f:
             post_html = md.convert(f.read())
         template = env.get_template('post.html')
