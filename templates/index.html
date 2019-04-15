@@ -2,6 +2,6 @@
 {% block title %}Posts{% endblock %}
 {% block content %}
     {% for post in posts %}
-        {{ post.title[0] }}
+        <a href="{{ post.filename }}">{{ post.title[0] }}</a>
     {% endfor %}
 {% endblock %}
