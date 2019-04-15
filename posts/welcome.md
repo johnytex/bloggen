@@ -20,6 +20,6 @@ print('hello world!')
 
 Here is a photo of an alpaca by Xandro Vandewalle:
 
-![/static/images/alpaca.jpeg]
+![](/static/images/alpaca.jpeg)
 
 https://unsplash.com/photos/uArsojHSNFc
