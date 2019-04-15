@@ -6,8 +6,6 @@
     - https://jrl.ninja/etc/1/
  * Make each blog entry its own directory, so relevant images are put
    in the same dir as the post?
- * Set proper language tags (helps with hyphenation?)
- * Syntax highlighting
  * RSS feed
  * Analytics
  * Netlify
