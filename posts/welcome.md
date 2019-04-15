@@ -1,5 +1,6 @@
-Title: Welcome to my blog!
-Date:  2019-04-13
+Authors: chreke
+Date:    2019-04-13
+Title:   Welcome to my blog!
 
 # Welcome!
 

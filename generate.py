@@ -34,7 +34,11 @@ def generate_posts():
         with open(os.path.join(BASE_DIR, "posts", post), "r") as f:
             post_html = md.convert(f.read())
         template = env.get_template("post.html")
-        html = template.render(post_html=Markup(post_html))
+        html = template.render(
+            title=md.Meta["title"][0],
+            post_html=Markup(post_html),
+            author=", ".join(md.Meta["authors"])
+        )
         filename = os.path.splitext(os.path.basename(post))[0] + ".html"
         md.Meta["filename"] = filename
         metadata.append(md.Meta)
