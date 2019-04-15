@@ -1,11 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Index{% endblock %}
-{% block head %}
-    {{ super() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
+    <h1>{{ title }}</h1>
 	{{ post_html }}
 {% endblock %}
