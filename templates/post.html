@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ title }}{% endblock %}
-{% block content %}
+{% block header %}
     <h1>{{ title }}</h1>
+{% endblock %}
+{% block content %}
 	{{ post_html }}
+{% endblock %}
+{% block footer %}
+<p>Written on {{ date }} by {{ authors }}</p>
 {% endblock %}

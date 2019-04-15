@@ -27,6 +27,10 @@ img {
     max-width: 40em;
 }
 
+.footer {
+    text-align: center;
+}
+
 code,
 pre {
     background: #eee;
