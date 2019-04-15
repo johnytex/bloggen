@@ -1,4 +1,4 @@
-# BlogGen - A simple static blog generator
+# Bloggen - A simple static blog generator
 
 Bloggen is a simple static blog generator written in Python.
 
