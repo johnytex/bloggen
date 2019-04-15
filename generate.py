@@ -2,11 +2,14 @@
 import timeit
 import os
 import shutil
+
+import toml
 from jinja2 import Environment, FileSystemLoader, Markup, select_autoescape
 import markdown
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_PATH = os.path.join(BASE_DIR, "site")
+CONFIG_FILE = "config.toml"
 
 env = Environment(
     loader=FileSystemLoader(os.path.join(BASE_DIR, "templates")),
@@ -17,6 +20,10 @@ try:
     os.makedirs(SITE_PATH)
 except FileExistsError:
     pass
+
+
+def load_config():
+    return toml.load(CONFIG_FILE)
 
 
 def generate_posts():
@@ -39,9 +46,10 @@ def generate_posts():
 
 
 def generate_index_page(posts_metadata):
-    posts_metadata.sort(key=lambda x: x["date"])
+    config = load_config()
+    posts_metadata.sort(key=lambda x: x["date"][0])
     index_template = env.get_template("index.html")
-    html = index_template.render(posts=posts_metadata)
+    html = index_template.render(title=config["title"], posts=posts_metadata)
     filename = os.path.join(SITE_PATH, "index.html")
     with open(filename, "w") as f:
         f.write(html)
