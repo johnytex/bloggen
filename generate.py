@@ -36,8 +36,9 @@ def generate_posts():
         template = env.get_template("post.html")
         html = template.render(
             title=md.Meta["title"][0],
+            date=md.Meta["date"][0],
             post_html=Markup(post_html),
-            author=", ".join(md.Meta["authors"])
+            authors=", ".join(md.Meta["authors"])
         )
         filename = os.path.splitext(os.path.basename(post))[0] + ".html"
         md.Meta["filename"] = filename
