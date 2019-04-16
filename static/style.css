@@ -11,6 +11,10 @@ a {
     color: #e81c4f;
 }
 
+.header h1 {
+    margin-bottom: 1em;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Arial", sans-serif;
 }
