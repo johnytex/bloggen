@@ -8,8 +8,6 @@
    in the same dir as the post?
  * RSS feed
  * Analytics
- * Netlify
-     - Should just work if I add a build command? https://www.netlify.com/docs/continuous-deployment/
  * Live reload: https://www.browsersync.io
  * Watch mode
      - Do different things depending on the directory of the changed file
