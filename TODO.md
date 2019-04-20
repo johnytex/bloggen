@@ -1,5 +1,7 @@
 # TODO
 
+ * SEO stuff, like
+    - Canonical URLs
  * Steal more stuff from
     - https://jgthms.com/web-design-in-4-minutes/#images
     - ferd.ca
