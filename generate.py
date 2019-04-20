@@ -46,7 +46,11 @@ def write_posts(posts):
 def generate_index_page(config, posts):
     metadata = [p.meta for p in posts]
     template = env.get_template("index.html")
-    html = template.render(title=config["title"], posts=metadata)
+    html = template.render(
+        feed_url=urllib.parse.urljoin(config["url"], "feed.xml"),
+        title=config["title"],
+        posts=metadata,
+    )
     filename = os.path.join(SITE_PATH, "index.html")
     with open(filename, "w") as f:
         f.write(html)
