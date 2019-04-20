@@ -37,6 +37,7 @@ def write_posts(posts):
             title=post.meta["title"][0],
             date=post.meta["date"][0],
             post_html=Markup(post.html),
+            description=" ".join(post.meta["description"]),
             authors=", ".join(post.meta["authors"]),
         )
         path = os.path.join(SITE_PATH, post.meta["filename"])
@@ -50,6 +51,7 @@ def generate_index_page(config, posts):
     html = template.render(
         feed_url=urllib.parse.urljoin(config["url"], "feed.xml"),
         title=config["title"],
+        description=config["description"],
         posts=metadata,
     )
     filename = os.path.join(SITE_PATH, "index.html")
