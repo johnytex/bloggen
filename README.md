@@ -4,7 +4,7 @@ Bloggen is a simple static blog generator written in Python.
 
 ## Usage
 
-1. Clone this repository
+1. Fork and / or clone this repository
 1. Make sure you have Python 3.7 (or later) installed. You may also
    want to create a [virtualenv][virtualenv] for this project.
 1. Run `pip install -r requirements.txt`
@@ -32,6 +32,13 @@ for blog post metadata.
 At a minimum, each blog entry needs to have the `Title` and `Date`
 fields set.
 
+## Netlify
+
+Blogs made with Bloggen are ready to be deployed to Netlify. Check out
+Netlify's [Continuous Deployment][deployment] documentation for
+further instructions.
+
 [pymark]: https://python-markdown.github.io
 [metadata]: https://python-markdown.github.io/extensions/meta_data/
 [virtualenv]: https://virtualenv.pypa.io/
+[deployment]: https://www.netlify.com/docs/continuous-deployment/
