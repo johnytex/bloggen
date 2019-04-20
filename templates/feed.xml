@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>{{ config.url }}</id>
+    <id>{{ canonical_url }}</id>
     <title>{{ config.title }}</title>
-    <link rel="self" href="{{ config.url }}"/>
+    <link rel="self" href="{{ canonical_url }}feed.xml"/>
     <updated>{{ last_pub_date }}</updated>
     <author>
         <name>{{ config.author }}</name>
@@ -12,13 +12,13 @@
         <entry>
             <id>{{ meta.url }}</id>
             <title>{{ meta.title[0] }}</title>
-            <updated>{{ meta.date[0] }}</updated>
+            <updated>{{ meta.iso_date[0] }}</updated>
             <author>
                 {% for author in meta.authors %}
                     <name>{{ author }}</name>
                 {% endfor %}
             </author>
-            <link>{{ meta.url }}</link>
+            <link href="{{ meta.url }}"/>
             <content type="html">{{ post.html }}</content>
         </entry>
     {% endfor %}

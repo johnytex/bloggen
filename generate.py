@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import datetime
 import os
 import urllib
 import shutil
@@ -58,9 +59,11 @@ def generate_index_page(config, posts):
 
 def generate_feed(config, posts):
     template = env.get_template("feed.xml")
-    last_pub_date = posts[0].meta["date"][0]
     xml = template.render(
-        config=config, posts=posts, last_pub_date=last_pub_date
+        config=config,
+        posts=posts,
+        canonical_url=to_canonical_url(config["url"]),
+        last_pub_date=posts[0].meta["iso_date"][0],
     )
     filename = os.path.join(SITE_PATH, "feed.xml")
     with open(filename, "w") as f:
@@ -87,7 +90,17 @@ def parse_markdown(config):
         filename = os.path.splitext(os.path.basename(post))[0] + ".html"
         md.Meta["filename"] = filename
         md.Meta["url"] = urllib.parse.urljoin(config["url"], filename)
+        md.Meta["iso_date"] = to_rfc_3339(md.Meta["date"][0])
         yield Post(meta=md.Meta, html=post_html)
+
+
+def to_rfc_3339(iso_datetime):
+    dt = datetime.datetime.fromisoformat(iso_datetime)
+    return dt.isoformat("T") + "Z"
+
+
+def to_canonical_url(url):
+    return url + "/" if url[-1] != "/" else ""
 
 
 if __name__ == "__main__":
