@@ -63,7 +63,7 @@ def generate_feed(config, posts):
         config=config,
         posts=posts,
         canonical_url=to_canonical_url(config["url"]),
-        last_pub_date=posts[0].meta["iso_date"][0],
+        last_pub_date=posts[0].meta["iso_date"],
     )
     filename = os.path.join(SITE_PATH, "feed.xml")
     with open(filename, "w") as f:
