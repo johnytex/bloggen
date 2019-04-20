@@ -12,7 +12,7 @@
         <entry>
             <id>{{ meta.url }}</id>
             <title>{{ meta.title[0] }}</title>
-            <updated>{{ meta.iso_date[0] }}</updated>
+            <updated>{{ meta.iso_date }}</updated>
             <author>
                 {% for author in meta.authors %}
                     <name>{{ author }}</name>
