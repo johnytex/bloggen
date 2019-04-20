@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
+    <id>{{ config.url }}</id>
     <title>{{ config.title }}</title>
     <link rel="self" href="{{ config.url }}"/>
     <updated>{{ last_pub_date }}</updated>
-    <description>{{ config.description }}</description>
     <author>
         <name>{{ config.author }}</name>
     </author>
-    <id>{{ config.url }}</id>
     {% for post in posts %}
         {% set meta = post.meta %}
         <entry>
-            <id>{{ meta.date[0] }}</id>
+            <id>{{ meta.url }}</id>
             <title>{{ meta.title[0] }}</title>
             <updated>{{ meta.date[0] }}</updated>
             <author>
