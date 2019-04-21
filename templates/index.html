@@ -16,7 +16,7 @@
     <ul>
     {% for post in posts %}
         <li>
-            {{ post.date[0] }}
+            {{ post.iso_date[:10] }}
             <a href="{{ post.filename }}">{{ post.title[0] }}</a>
         </li>
     {% endfor %}
