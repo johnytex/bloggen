@@ -1,6 +1,7 @@
 body {
     color: #555;
     font-family: "PT Serif", "Georgia", serif;
+    font-size: 18px;
     line-height: 1.5;
     margin: 0 auto;
     max-width: 38rem;
