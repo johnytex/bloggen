@@ -14,6 +14,7 @@ Post = namedtuple("Post", ["html", "meta"])
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_PATH = os.path.join(BASE_DIR, "site")
 CONFIG_FILE = "config.toml"
+FEED_FILENAME = 'feed.rss'
 
 env = Environment(
     loader=FileSystemLoader(os.path.join(BASE_DIR, "templates")),
@@ -46,13 +47,13 @@ def write_posts(posts):
 
 
 def generate_index_page(config, posts):
-    metadata = [p.meta for p in posts]
+    posts_metadata = [p.meta for p in posts]
     template = env.get_template("index.html")
     html = template.render(
-        feed_url=urllib.parse.urljoin(config["url"], "feed.xml"),
+        feed_url=feed_url(config),
         title=config["title"],
         description=config["description"],
-        posts=metadata,
+        posts=posts_metadata,
     )
     filename = os.path.join(SITE_PATH, "index.html")
     with open(filename, "w") as f:
@@ -60,17 +61,19 @@ def generate_index_page(config, posts):
 
 
 def generate_feed(config, posts):
-    template = env.get_template("feed.xml")
+    template = env.get_template("feed.rss")
     xml = template.render(
         config=config,
         posts=posts,
-        canonical_url=to_canonical_url(config["url"]),
+        self_url=feed_url(config),
         last_pub_date=posts[0].meta["iso_date"],
     )
-    filename = os.path.join(SITE_PATH, "feed.xml")
+    filename = os.path.join(SITE_PATH, FEED_FILENAME)
     with open(filename, "w") as f:
         f.write(xml)
 
+def feed_url(config):
+    return urllib.parse.urljoin(config["url"], "feed.rss"),
 
 def copy_static_files():
     static_src_path = os.path.join(BASE_DIR, "static")

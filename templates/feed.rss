@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>{{ canonical_url }}</id>
     <title>{{ config.title }}</title>
-    <link rel="self" href="{{ canonical_url }}feed.xml"/>
+    <link rel="self" href="{{ self_url }}"/>
     <updated>{{ last_pub_date }}</updated>
     <author>
         <name>{{ config.author }}</name>
