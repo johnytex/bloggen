@@ -33,6 +33,12 @@ to customize Bloggen (which I highly encourage!) you'll need to install it:
 pip install pip-tools
 ```
 
+To install regular and development dependencies, do:
+
+```sh
+pip-sync requirements.txt dev-requirements.txt
+```
+
 ## Markdown
 
 Bloggen uses [Python-Markdown][pymark] for converting Markdown
