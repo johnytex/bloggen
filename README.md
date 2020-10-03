@@ -23,6 +23,16 @@ If you want to include static assets (images, CSS, JavaScript, etc),
 put them in the `static` directory. The `generate.py` script will copy
 the contents of this directory to `site/static/`.
 
+## Hacking
+
+Bloggen uses [pip-tools][pip-tools] for managing dependencies, so if you want
+to customize Bloggen (which I highly encourage!) you'll need to install it:
+
+```sh
+# inside your virtual env:
+pip install pip-tools
+```
+
 ## Markdown
 
 Bloggen uses [Python-Markdown][pymark] for converting Markdown
@@ -42,3 +52,4 @@ further instructions.
 [metadata]: https://python-markdown.github.io/extensions/meta_data/
 [virtualenv]: https://virtualenv.pypa.io/
 [deployment]: https://www.netlify.com/docs/continuous-deployment/
+[pip-tools]: https://github.com/jazzband/pip-tools
