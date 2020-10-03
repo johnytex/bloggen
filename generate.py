@@ -72,8 +72,10 @@ def generate_feed(config, posts):
     with open(filename, "w") as f:
         f.write(xml)
 
+
 def feed_url(config):
-    return urllib.parse.urljoin(config["url"], "feed.rss"),
+    return urllib.parse.urljoin(config["url"], "feed.rss")
+
 
 def copy_static_files():
     static_src_path = os.path.join(BASE_DIR, "static")
