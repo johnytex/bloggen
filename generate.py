@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import datetime
 import os
-import urllib
 import shutil
+import urllib
 from collections import namedtuple
 
+import markdown
 import toml
 from jinja2 import Environment, FileSystemLoader, Markup, select_autoescape
-import markdown
 
 Post = namedtuple("Post", ["html", "meta"])
 
