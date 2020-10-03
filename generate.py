@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from collections import defaultdict
 import datetime
 import os
 import shutil
@@ -33,6 +34,7 @@ class Post:
     description: str
     filename: str
     html: str
+    tags: List[str]
     title: str
     url: str
 
@@ -76,6 +78,30 @@ def generate_feed(config, posts):
         f.write(xml)
 
 
+def generate_tag_pages(config, posts):
+    tags_path = os.path.join(SITE_PATH, "tags")
+    try:
+        shutil.rmtree(tags_path)
+    except FileNotFoundError:
+        pass
+    os.makedirs(tags_path)
+    tagged_posts = defaultdict(list)
+    for post in posts:
+        for tag in post.tags:
+            tagged_posts[tag].append(post)
+    template = env.get_template("index.html")
+    for tag in tagged_posts:
+        html = template.render(
+            title=f'Posts tagged "{tag}"',
+            description=f'Posts tagged "{tag}"',
+            feed_url=feed_url(config),
+            posts=tagged_posts[tag],
+        )
+        filename = os.path.join(tags_path, f"{tag}.html")
+        with open(filename, "w") as f:
+            f.write(html)
+
+
 def feed_url(config):
     return urllib.parse.urljoin(config["url"], "feed.rss")
 
@@ -105,8 +131,9 @@ def parse_markdown(config):
             description=md.Meta["description"],
             filename=filename,
             html=post_html,
+            tags=md.Meta.get("tags", []),
             title="".join(md.Meta["title"]),
-            url=urllib.parse.urljoin(config["url"], filename),
+            url="/" + urllib.parse.urljoin(config["url"], filename),
         )
 
 
@@ -128,6 +155,7 @@ def generate():
     generate_posts(posts)
     print("Generating index page...")
     generate_index_page(config, posts)
+    generate_tag_pages(config, posts)
     generate_feed(config, posts)
     print("Copying static files...")
     copy_static_files()

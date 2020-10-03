@@ -3,6 +3,7 @@ Date:        2019-04-13 14:00
 Title:       Welcome to my blog!
 Description: An example blog post that demonstrates the features of
              bloggen, such as markup and syntax highlighting.
+Tags:        welcome
 
 Hello everyone, and welcome to my blog!
 
