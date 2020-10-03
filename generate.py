@@ -131,7 +131,7 @@ def parse_markdown():
             description="".join(md.Meta.get("description")),
             filename=filename,
             html=post_html,
-            tags=md.Meta.get("tags", []),
+            tags=[tag.strip() for tag in md.Meta.get("tags", [])],
             title="".join(md.Meta["title"]),
             url=f"/{filename}",
         )
