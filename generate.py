@@ -3,13 +3,12 @@ import datetime
 import os
 import shutil
 import urllib
-from collections import namedtuple
+from dataclasses import dataclass
+from typing import List
 
 import markdown
 import toml
 from jinja2 import Environment, FileSystemLoader, Markup, select_autoescape
-
-Post = namedtuple("Post", ["html", "meta"])
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_PATH = os.path.join(BASE_DIR, "site")
@@ -27,6 +26,17 @@ except FileExistsError:
     pass
 
 
+@dataclass
+class Post:
+    authors: List[str]
+    date: str
+    description: str
+    filename: str
+    html: str
+    title: str
+    url: str
+
+
 def load_config():
     return toml.load(CONFIG_FILE)
 
@@ -34,26 +44,19 @@ def load_config():
 def generate_posts(posts):
     for post in posts:
         template = env.get_template("post.html")
-        html = template.render(
-            title=post.meta["title"][0],
-            date=post.meta["date"][0],
-            post_html=Markup(post.html),
-            description=" ".join(post.meta["description"]),
-            authors=", ".join(post.meta["authors"]),
-        )
-        path = os.path.join(SITE_PATH, post.meta["filename"])
+        html = template.render(post=post, post_html=Markup(post.html))
+        path = os.path.join(SITE_PATH, post.filename)
         with open(path, "w") as f:
             f.write(html)
 
 
 def generate_index_page(config, posts):
-    posts_metadata = [p.meta for p in posts]
     template = env.get_template("index.html")
     html = template.render(
         feed_url=feed_url(config),
         title=config["title"],
         description=config["description"],
-        posts=posts_metadata,
+        posts=posts,
     )
     filename = os.path.join(SITE_PATH, "index.html")
     with open(filename, "w") as f:
@@ -66,7 +69,7 @@ def generate_feed(config, posts):
         config=config,
         posts=posts,
         self_url=feed_url(config),
-        last_pub_date=posts[0].meta["iso_date"],
+        last_pub_date=posts[0].date,
     )
     filename = os.path.join(SITE_PATH, FEED_FILENAME)
     with open(filename, "w") as f:
@@ -95,10 +98,16 @@ def parse_markdown(config):
         with open(os.path.join(BASE_DIR, "posts", post), "r") as f:
             post_html = md.convert(f.read())
         filename = os.path.splitext(os.path.basename(post))[0] + ".html"
-        md.Meta["filename"] = filename
-        md.Meta["url"] = urllib.parse.urljoin(config["url"], filename)
-        md.Meta["iso_date"] = to_rfc_3339(md.Meta["date"][0])
-        yield Post(meta=md.Meta, html=post_html)
+        # pylint: disable=no-member
+        yield Post(
+            authors=md.Meta["authors"],
+            date=to_rfc_3339(md.Meta["date"][0]),
+            description=md.Meta["description"],
+            filename=filename,
+            html=post_html,
+            title="".join(md.Meta["title"]),
+            url=urllib.parse.urljoin(config["url"], filename),
+        )
 
 
 def to_rfc_3339(iso_datetime):
@@ -115,7 +124,7 @@ if __name__ == "__main__":
     config = load_config()
     print("Generating posts...")
     posts = list(parse_markdown(config))
-    posts.sort(key=lambda x: x.meta["date"][0])
+    posts.sort(key=lambda x: x.date)
     generate_posts(posts)
     print("Generating index page...")
     generate_index_page(config, posts)

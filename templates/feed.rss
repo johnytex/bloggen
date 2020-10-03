@@ -8,17 +8,16 @@
         <name>{{ config.author }}</name>
     </author>
     {% for post in posts %}
-        {% set meta = post.meta %}
         <entry>
-            <id>{{ meta.url }}</id>
-            <title>{{ meta.title[0] }}</title>
-            <updated>{{ meta.iso_date }}</updated>
+            <id>{{ post.url }}</id>
+            <title>{{ post.title }}</title>
+            <updated>{{ post.date }}</updated>
             <author>
-                {% for author in meta.authors %}
+                {% for author in post.authors %}
                     <name>{{ author }}</name>
                 {% endfor %}
             </author>
-            <link href="{{ meta.url }}"/>
+            <link href="{{ post.url }}"/>
             <content type="html">{{ post.html }}</content>
         </entry>
     {% endfor %}
