@@ -31,7 +31,7 @@ def load_config():
     return toml.load(CONFIG_FILE)
 
 
-def write_posts(posts):
+def generate_posts(posts):
     for post in posts:
         template = env.get_template("post.html")
         html = template.render(
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     print("Generating posts...")
     posts = list(parse_markdown(config))
     posts.sort(key=lambda x: x.meta["date"][0])
-    write_posts(posts)
+    generate_posts(posts)
     print("Generating index page...")
     generate_index_page(config, posts)
     generate_feed(config, posts)
