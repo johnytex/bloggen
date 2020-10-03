@@ -128,7 +128,7 @@ def parse_markdown(config):
         yield Post(
             authors=md.Meta["authors"],
             date=to_rfc_3339(md.Meta["date"][0]),
-            description=md.Meta["description"],
+            description="".join(md.Meta["description"]),
             filename=filename,
             html=post_html,
             tags=md.Meta.get("tags", []),
