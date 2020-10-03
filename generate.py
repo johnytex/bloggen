@@ -116,7 +116,7 @@ def copy_static_files():
     shutil.copytree(static_src_path, static_dest_path)
 
 
-def parse_markdown(config):
+def parse_markdown():
     for post in os.listdir(os.path.join(BASE_DIR, "posts")):
         md = markdown.Markdown(
             extensions=["meta", "fenced_code", "codehilite", "smarty"]
@@ -133,7 +133,7 @@ def parse_markdown(config):
             html=post_html,
             tags=md.Meta.get("tags", []),
             title="".join(md.Meta["title"]),
-            url="/" + urllib.parse.urljoin(config["url"], filename),
+            url=f"/{filename}",
         )
 
 
@@ -150,7 +150,7 @@ def generate():
     print("Loading configuration")
     config = load_config()
     print("Generating posts...")
-    posts = list(parse_markdown(config))
+    posts = list(parse_markdown())
     posts.sort(key=lambda x: x.date)
     generate_posts(posts)
     print("Generating index page...")
