@@ -156,7 +156,7 @@ def generate():
     config = load_config()
     print("Generating posts...")
     posts = list(parse_markdown())
-    posts.sort(key=lambda x: x.date)
+    posts.sort(key=lambda x: x.date, reverse=True)
     generate_posts(posts)
     print("Generating index page...")
     generate_index_page(config, posts)
