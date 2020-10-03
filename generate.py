@@ -119,7 +119,7 @@ def to_canonical_url(url):
     return url + "/" if url[-1] != "/" else ""
 
 
-if __name__ == "__main__":
+def generate():
     print("Loading configuration")
     config = load_config()
     print("Generating posts...")
@@ -131,3 +131,7 @@ if __name__ == "__main__":
     generate_feed(config, posts)
     print("Copying static files...")
     copy_static_files()
+
+
+if __name__ == "__main__":
+    generate()
