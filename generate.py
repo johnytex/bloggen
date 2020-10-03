@@ -125,10 +125,15 @@ def parse_markdown():
             post_html = md.convert(f.read())
         filename = os.path.splitext(os.path.basename(post))[0] + ".html"
         # pylint: disable=no-member
+        description = (
+            "".join(md.Meta["description"])
+            if "description" in md.Meta
+            else None
+        )
         yield Post(
             authors=md.Meta["authors"],
             date=to_rfc_3339(md.Meta["date"][0]),
-            description="".join(md.Meta.get("description")),
+            description=description,
             filename=filename,
             html=post_html,
             tags=[tag.strip() for tag in md.Meta.get("tags", [])],
