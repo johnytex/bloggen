@@ -119,7 +119,13 @@ def copy_static_files():
 def parse_markdown():
     for post in os.listdir(os.path.join(BASE_DIR, "posts")):
         md = markdown.Markdown(
-            extensions=["meta", "fenced_code", "codehilite", "smarty"]
+            extensions=[
+                "meta",
+                "fenced_code",
+                "codehilite",
+                "smarty",
+                "toc",
+            ]
         )
         with open(os.path.join(BASE_DIR, "posts", post), "r") as f:
             post_html = md.convert(f.read())
