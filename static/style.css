@@ -1,28 +1,34 @@
 body {
-    color: #555;
-    font-family: "PT Serif", "Georgia", serif;
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.6;
     font-size: 18px;
-    line-height: 1.5;
-    margin: 0 auto;
-    max-width: 38rem;
-    padding: 1.5em;
-}
+    color: #444;
+    padding: 0 10px;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 
-a {
-    color: #e81c4f;
-}
-
-.header h1 {
-    margin-bottom: 1em;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Helvetica", "Arial", sans-serif;
+    line-height:1.2;
 }
 
-h2 {
-    margin-top: 1em;
-    padding-top: 1em;
+code {
+    background: #eee;
+    font-size: 14px;
+    padding: 2px;
+}
+
+pre {
+    padding: 1em;
+    background: #eee;
+}
+
+a {
+    color: #e81c4f;
 }
 
 img {
@@ -34,16 +40,6 @@ img {
 
 .footer {
     text-align: center;
-}
-
-code,
-pre {
-    background: #eee;
-}
-
-pre {
-    font-size: 16px;
-    padding: 1em;
 }
 
 /* Pygments */
