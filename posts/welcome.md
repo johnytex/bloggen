@@ -16,6 +16,17 @@ Here is a simple Python program:
 ```python
 print('hello world!')
 ```
+## Formatting
+
+Here is some *emphasized text*
+
+Here is some text _with a different emphasis_
+
+Here is a block quote:
+
+> Any quote seems sensible if you attribute it to Albert Einstein
+>
+>  &mdash; Albert Einstein
 
 ## Alpacas
 
