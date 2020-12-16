@@ -12,11 +12,6 @@
             <id>{{ post.url }}</id>
             <title>{{ post.title }}</title>
             <updated>{{ post.date }}</updated>
-            <author>
-                {% for author in post.authors %}
-                    <name>{{ author }}</name>
-                {% endfor %}
-            </author>
             <link href="{{ post.url }}"/>
             <content type="html">{{ post.html }}</content>
         </entry>

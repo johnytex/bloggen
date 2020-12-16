@@ -29,7 +29,6 @@ except FileExistsError:
 
 @dataclass
 class Post:
-    authors: List[str]
     date: str
     description: str
     filename: str
@@ -137,7 +136,6 @@ def parse_markdown():
             else None
         )
         yield Post(
-            authors=md.Meta["authors"],
             date=to_rfc_3339(md.Meta["date"][0]),
             description=description,
             filename=filename,
